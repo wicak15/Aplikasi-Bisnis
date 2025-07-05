@@ -47,7 +47,7 @@ class StocksRelationManager extends RelationManager
             Tables\Filters\TernaryFilter::make('stock_balance')
                 ->placeholder('Semua')
                 ->trueLabel('Ada Stok')
-                ->falseLabel('Stok Kosong')
+                ->falseLabel('Stok Kosong') 
                 ->queries(
                     blank: fn (Builder $query) => $query,
                     true: fn (Builder $query) => $query->hasBalance(),

@@ -19,16 +19,15 @@ class EditBarang extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-    
 
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
-       return DB::transaction(
+        return DB::transaction(
             function () use ($record, $data) {
                 $oldRecord = Barang::query()->lockForUpdate()
-                ->where('id', $record->id)
-                ->where('version', $data['version'])
-                ->first();
+                    ->where('id', $record->id)
+                    ->where('version', $data['version'])
+                    ->first();
                 if (is_null($oldRecord)) {
                     throw new \Exception('version sudah berubah, silahkan refresh');
                 }
